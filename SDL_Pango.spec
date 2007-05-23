@@ -1,6 +1,6 @@
 %define name SDL_Pango
 %define version 0.1.2
-%define release %mkrel 1
+%define release %mkrel 2
 %define lib_name_orig lib%{name}
 %define lib_major 1
 %define lib_name %mklibname %{name} %{lib_major}
