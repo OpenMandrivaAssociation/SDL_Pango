@@ -17,6 +17,7 @@ URL: http://sdlpango.sourceforge.net/
 Group: System/Libraries
 BuildRequires: libSDL-devel >= 1.2.4
 BuildRequires: pango-devel >= 1.2.0
+BuildRoot: %{_tmppath}/%{name}-%{version}-root
 
 %description
 Pango is the text rendering engine of GNOME 2.
