@@ -1,47 +1,45 @@
-%define name SDL_Pango
-%define version 0.1.2
-%define release %mkrel 2
-%define lib_name_orig lib%{name}
-%define lib_major 1
-%define lib_name %mklibname %{name} %{lib_major}
+%define major 1
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+
 %define _includedir %{_prefix}/include/SDL
 
-Summary: Simple DirectMedia Layer for pango 
-Name: %{name}
-Version: %{version}
-Release: %{release}
-Source0: http://puzzle.dl.sourceforge.net/sourceforge/sdlpango/%{name}-%{version}.tar.bz2
-Patch0: SDL_Pango-0.1.2-API-adds.patch
-License: LGPL
-URL: http://sdlpango.sourceforge.net/
-Group: System/Libraries
-BuildRequires: libSDL-devel >= 1.2.4
-BuildRequires: pango-devel >= 1.2.0
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+Summary:	Simple DirectMedia Layer for pango 
+Name:		SDL_Pango
+Version:	0.1.2
+Release:	%mkrel 3
+License:	LGPLv2+
+Group:		System/Libraries
+URL:		http://sdlpango.sourceforge.net/
+Source0:	http://puzzle.dl.sourceforge.net/sourceforge/sdlpango/%{name}-%{version}.tar.bz2
+Patch0:		SDL_Pango-0.1.2-API-adds.patch
+BuildRequires:	libSDL-devel >= 1.2.4
+BuildRequires:	pango-devel >= 1.2.0
+BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 Pango is the text rendering engine of GNOME 2.
 SDL_Pango connects the engine to SDL.
 
-%package -n %{lib_name}
+%package -n %{libname}
 Summary:	Main library for %{name}
 Group:		System/Libraries
 Provides:	%{name}
 Obsoletes:	%{name}
 
-%description -n %{lib_name}
+%description -n %{libname}
 This package contains the library needed to run programs dynamically
 linked with %{name}.
 
-%package -n %{lib_name}-devel
+%package -n %{develname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
-Requires:	%{lib_name} = %{version}
-Provides:	%{lib_name_orig}-devel = %{version}-%{release}
-Provides:	%{name}-devel
-Obsoletes:	%{name}-devel
+Requires:	%{libname} = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
+Provides:	%mklibname %{name} 1 -d
+Obsoletes:	%mklibname %{name} 1 -d
 
-%description -n %{lib_name}-devel
+%description -n %{develname}
 This package contains the headers that programmers will need to develop
 applications which will use %{name}.
 
@@ -54,28 +52,24 @@ applications which will use %{name}.
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall
+rm -rf %{buildroot}
+%makeinstall_std
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
-%post -n %{lib_name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
-%postun -n %{lib_name} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{lib_name}
+%files -n %{libname}
 %defattr(-,root,root)
-%doc README COPYING
-%{_libdir}/lib*.so.*
+%{_libdir}/lib*.so.%{major}*
 
-%files -n %{lib_name}-devel
+%files -n %{develname}
 %defattr(-,root,root)
-%doc README COPYING
+%doc README
 %{_libdir}/*a
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-
-
-
