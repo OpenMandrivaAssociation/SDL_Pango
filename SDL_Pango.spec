@@ -7,7 +7,7 @@
 Summary:	Simple DirectMedia Layer for pango 
 Name:		SDL_Pango
 Version:	0.1.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	LGPLv2+
 Group:		System/Libraries
 URL:		http://sdlpango.sourceforge.net/
@@ -36,8 +36,8 @@ Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
-Provides:	%mklibname %{name} 1 -d
-Obsoletes:	%mklibname %{name} 1 -d
+Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%mklibname %{name} 1 -d < 0.1.2-4
 
 %description -n %{develname}
 This package contains the headers that programmers will need to develop
