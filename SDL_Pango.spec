@@ -7,7 +7,7 @@
 Summary:	Simple DirectMedia Layer for pango
 Name:		SDL_Pango
 Version:	0.1.2
-Release:	13
+Release:	14
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://sdlpango.sourceforge.net/
@@ -41,7 +41,12 @@ applications which will use %{name}.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p0 -b .p0~
+
+libtoolize --force
+aclocal -I m4
+automake -a
+autoconf
 
 %build
 %configure2_5x --disable-static
@@ -58,4 +63,3 @@ applications which will use %{name}.
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*
 %{_includedir}/*
-
