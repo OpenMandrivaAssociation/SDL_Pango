@@ -7,7 +7,7 @@
 Summary:	Simple DirectMedia Layer for pango
 Name:		SDL_Pango
 Version:	0.1.2
-Release:	19
+Release:	20
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://sdlpango.sourceforge.net/
