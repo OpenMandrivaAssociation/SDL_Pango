@@ -1,0 +1,17 @@
+diff --git a/src/SDL_Pango.c b/src/SDL_Pango.c
+index 2118cd2..637bb0f 100644
+--- a/src/SDL_Pango.c
++++ b/src/SDL_Pango.c
+@@ -264,6 +264,12 @@ static void getItemProperties (
+ 
+ static void clearFTBitmap(FT_Bitmap *bitmap);
+ 
++static void SDLPango_CopyFTBitmapToSurface(
++    const FT_Bitmap *bitmap,
++    SDL_Surface *surface,
++    const SDLPango_Matrix *matrix,
++    SDL_Rect *rect);
++
+ typedef struct _surfaceArgs {
+     Uint32 flags;
+     int depth;

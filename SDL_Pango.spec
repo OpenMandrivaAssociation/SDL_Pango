@@ -13,6 +13,7 @@ Group:		System/Libraries
 Url:		http://sdlpango.sourceforge.net/
 Source0:	http://puzzle.dl.sourceforge.net/sourceforge/sdlpango/%{name}-%{version}.tar.bz2
 Patch0:		SDL_Pango-0.1.2-API-adds.patch
+Patch1:		sdl_pango_fix_build_clang.patch
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(pangoft2)
@@ -41,7 +42,7 @@ applications which will use %{name}.
 
 %prep
 %setup -q
-%patch0 -p0 -b .p0~
+%apply_patches
 
 libtoolize --force
 aclocal -I m4
@@ -49,7 +50,7 @@ automake -a
 autoconf
 
 %build
-%configure2_5x --disable-static
+%configure --disable-static
 %make
 
 %install
