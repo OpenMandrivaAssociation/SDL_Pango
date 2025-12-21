@@ -14,6 +14,11 @@ Url:		https://sdlpango.sourceforge.net/
 Source0:	http://puzzle.dl.sourceforge.net/sourceforge/sdlpango/%{name}-%{version}.tar.bz2
 Patch0:		SDL_Pango-0.1.2-API-adds.patch
 Patch1:		sdl_pango_fix_build_clang.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(sdl)
 BuildRequires:	pkgconfig(pango)
 BuildRequires:	pkgconfig(pangoft2)
